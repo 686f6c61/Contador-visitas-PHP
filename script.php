@@ -1,19 +1,23 @@
 <?php
 
-//abrimos el archivo visitas.txt
+//Abrimos el archivo visitas.txt. Añadimos a+ si no tenemos cleado el file.
 $recurso = fopen('contadorVisitas.txt','r+');
 
-$nb_visitas = fgets($recurso); //Lectura de la primera línea que contiene el número de páginas visitadas
+//Lectura de la primera línea que contiene el número de páginas visitadas
+$nb_visitas = fgets($recurso); 
 
-if($nb_visitas == ""){ //comprueba si el archivo todavía está vacío
+//comprueba si el archivo todavía está vacío
+if($nb_visitas == ""){ 
 	$nb_visitas = 0;
 }
+//aumentamos el número de visitas en uno cada vez que se ejecuta este archivo
+$nb_visitas++; 
 
-$nb_visitas++; //aumentamos el número de visitas en uno cada vez que se ejecuta este archivo
+//conseguimos ir al principio del archivo
+fseek($recurso, 0); 
 
-fseek($recurso, 0); //conseguimos ir al principio del archivo
-
-fputs($recurso, $nb_visitas); //escribimos el nuevo número de páginas visitadas
+//escribimos el nuevo número de páginas visitadas
+fputs($recurso, $nb_visitas); 
 
 fclose($recurso);//cierre del archivo
 
